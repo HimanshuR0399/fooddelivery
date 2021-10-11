@@ -1,0 +1,406 @@
+
+
+html{
+	scroll-behavior: smooth;
+}
+
+
+*{
+margin:0;
+padding:0;
+user-select:none;
+color:white;
+box-sizing:border-box;
+font-family:'Nunito', sans-serif;
+		
+}
+.mySlides {display: none;}
+.img {
+position:absolute;
+top:40px;
+left:790px;
+width:350px;
+height:350px;
+
+}
+
+
+.slideshow-container {
+ 
+  background:white;
+  
+  margin: auto;
+  height:500px;
+  position:absolute;
+	top:80px;
+	left:15px;
+	border:2px ;
+	width:1490px;
+	height:60%;
+	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: .2s;
+  animation-name: fade;
+  animation-duration: .2s;
+}
+
+
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+
+.newtext{
+	position:absolute;
+	top:140px;
+	
+	left:300px;
+	color:#191970;
+	font-weight:bold;
+	font-size:50px
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.grid-container {
+  position:absolute;
+  top:590px;
+  left:310px;
+  width:900px;
+  display: grid;
+  grid-column-gap: 50px;
+  grid-row-gap: 20px;
+  
+  grid-template-columns: auto auto auto;
+  background-color:#f4f0ec;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.grid-item {
+  background-color:white; 
+  
+  padding: 30px;
+  font-size: 30px;
+  color:black;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.photos{
+	width:150px;
+	height:150px;
+	
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+.food{
+	position:absolute;
+	top:20px;
+	left:35px;
+	height:40px;
+	width:40px;
+	text-align:center;
+	background:green;
+	border-radius:10px;
+	cursor:pointer;
+	color:white;
+	padding-top:8px;
+	font-size:20px;
+	line-height : 30px
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+.slogo{
+	position:absolute;
+	top:17px;
+	left:1100px;
+	height:40px;
+	width:40px;
+	text-align:center;
+	background:lightgrey;
+	border-radius:20px;
+	cursor:pointer;
+	color:white;
+	padding-top:8px;
+	font-size:20px;
+	line-height:30px
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+.top{position:absolute;
+	background:white;
+	width:1512px;
+	height:10%;
+	top:5px;
+	left:5px;
+	right:5px;
+	border:white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	
+	
+	
+}
+.logo{
+	position:absolute;
+	
+	font-size:35px;
+	line-height:80px;
+	left:80px;
+	font-family:Bradley Hand ITC;
+	text-shadow: 2px 3px 6px #005cb8;
+	font-weight:bold;
+}
+.search{position:absolute;
+	background:lightgrey;
+	border-radius:15px;
+	border:2px solid grey;
+	color:grey;
+	top:24px;
+	left:850px;
+	width:250px;
+	height:30px
+	
+	
+	
+	
+	
+	
+	
+}
+
+.btn{
+	position:absolute;
+	top:15px;
+	left:300px;
+	height:45px;
+	width:45px;
+	text-align:center;
+	background:#300630;
+	border-radius:3px;
+	cursor:pointer;
+	display:none;
+	transition:left 0.4s ease;
+	
+	
+	
+	
+}
+.btn i{
+	color:white;
+	font-size:28px;
+	line-height:45px
+}
+ .after{
+	color:white;
+	font-size:28px;
+	line-height:45px;
+	content:"/food";
+}
+
+.click{
+	
+	left:260px;
+	transition:left .2s ;
+	transition:right 0.4; 
+	
+}
+
+.sidebar{
+	position:absolute;
+	top:80px;
+	height:100%;
+	width:250px;
+	left:0px;
+	background:#300630;
+	box-shadow:3px 3px grey;
+	transition:left 0.4s ease;
+	
+}
+.side{
+	
+	left:0px;
+	transition:left 0.4s ease;
+	transition:right 0.4s ease;
+	
+	
+}
+
+.sidebar .left{
+	color:white;
+	font-size:20px;
+	font-weight:600;
+	line-height:65px;
+	text-align:center;
+	background: #1e1e1e;
+	letter-spacing:1px;
+	
+	
+}
+
+  a{
+	
+	height:25px;
+	width:25px;
+	
+
+	color:grey;
+	text-decoration:none;
+	font-size:18px;
+	
+	
+	
+	
+}
+.topbtn{
+	color:grey;
+	border-radius:5px;
+	text-align:center;
+	
+	width:60px;
+	height:30px;
+	
+	background:white;
+	border:1px white;
+	font-size:15px;
+	font-weight:bold;
+	padding:5px;
+	
+	
+	
+	
+	
+	
+}
+
+
+.topbtn:hover,.topbtn:active{
+	color:white;
+	background:darkgreen;
+	transition:.3s
+	
+	
+	
+	
+}
+
+
+.cartbtn {
+	color:white;
+	background-color:#005cb8;
+	width:120px;
+	height:30px;
+	border-radius:5px;
+	padding:5px;
+	text-align:center;
+	
+	
+	
+	
+	
+	
+	
+	
+}

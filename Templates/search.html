@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  </script>
+
+  <title>Menu</title>
+  <style>
+    #container {
+      height: 100%;
+      width: 100%;
+      padding: 5px;
+
+    }
+
+    .col1 {
+      width: 290px;
+      margin: 4px;
+      padding: 5px;
+    }
+
+    .filter {
+
+      border-bottom: .5px solid grey;
+      background-color: white;
+      padding: 5px;
+      padding-left: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .nutrients {
+
+      border-bottom: .5px solid grey;
+      background-color: white;
+      padding: 5px;
+      padding-left: 10px;
+      text-align: center;
+      font-size: 16px;
+
+    }
+
+    .value {
+
+      border-bottom: .5px solid grey;
+      background-color: white;
+      padding: 5px;
+      padding-left: 10px;
+      text-align: center;
+      font-size: 16px;
+
+
+    }
+
+    .row {
+
+      margin: 7px;
+      padding: 5px;
+
+
+    }
+
+    .photos {
+      width: 200px;
+      height: 200px;
+
+
+
+
+
+
+    }
+  </style>
+  <script>
+    var ischecked = false;
+    var ischeck = false;
+    var ischeck1 = false;
+    var ischeck2 = false;
+
+    //---------------proteins slides ----------------------//  
+    function addslider() {
+
+      //alert(t)
+      var check = document.createElement("input");
+      check.type = 'range';
+      check.name = "protien";
+      check.value = {{ protien }};
+    check.id = "proteinrange";
+    check.max = '100'
+    var val = document.createElement('p')
+    val.innerHTML = check.value + 'g/100g';
+    check.oninput = function () {
+      val.innerHTML = this.value + 'g/100g';
+    }
+    val.id = 'proteinvalues'
+
+
+    document.getElementById('mydiv').appendChild(check);
+    document.getElementById('mydiv').appendChild(val);
+    ischecked = true;
+      }
+    function closeslider() {
+      //alert("close")
+      var x = document.getElementById("proteinrange")
+      x.remove();
+      document.getElementById("proteinvalues").remove();
+
+      ischecked = false;
+    }
+    function toggleslider() {
+
+
+      if (ischecked) {
+
+        closeslider();
+      } else {
+
+        addslider();
+      }
+    }
+
+    //--------------------------Carbohydrates sliders--------------------------------//
+    function addslider1() {
+
+
+      var check = document.createElement("input");
+      check.type = 'range';
+      check.name = "carb";
+      check.value = {{ carb }};
+    check.id = "carbrange";
+    check.max = '200'
+    var val = document.createElement('p')
+    val.innerHTML = check.value + 'g/100g';
+    check.oninput = function () {
+      val.innerHTML = this.value + 'g/100g';
+    }
+    val.id = 'carbvalues'
+
+
+    document.getElementById('mydiv1').appendChild(check);
+    document.getElementById('mydiv1').appendChild(val);
+    ischeck = true;
+   }
+
+
+    function closeslider1() {
+      //alert("close")
+      var x = document.getElementById("carbrange")
+      x.remove();
+      document.getElementById("carbvalues").remove();
+      ischeck = false;
+    }
+
+    function toggleslider1() {
+
+
+      if (ischeck) {
+        //alert('close')
+        closeslider1();
+      } else {
+        // alert("open")
+        addslider1();
+      }
+
+
+
+    }
+    //-------------------fat slider--------------------------//
+    function addslider2() {
+
+
+      var check = document.createElement("input");
+      check.type = 'range';
+      check.name = "fat";
+      check.value = {{ fat }};
+    check.id = "fatrange";
+    check.max = '100'
+    var val = document.createElement('p')
+    val.innerHTML = check.value + 'g/100g';
+    check.oninput = function () {
+      val.innerHTML = this.value + 'g/100g';
+    }
+    val.id = 'fatvalues'
+
+
+    document.getElementById('mydiv2').appendChild(check);
+    document.getElementById('mydiv2').appendChild(val);
+    ischeck1 = true;
+      }
+
+
+    function closeslider2() {
+      //alert("close")
+      var x = document.getElementById("fatrange")
+      x.remove();
+      document.getElementById("fatvalues").remove();
+      ischeck1 = false;
+    }
+
+    function toggleslider2() {
+
+
+      if (ischeck1) {
+        //alert('close')
+        closeslider2();
+      } else {
+        // alert("open")
+        addslider2();
+      }
+
+
+
+    }
+    // --------------last slider-----------------------------------------//
+    function addslider3() {
+
+
+      var check = document.createElement("input");
+
+      check.type = 'range';
+      check.name = "cal";
+      check.value = {{ cal }};
+    check.id = "lastrange";
+    check.max = '600'
+    var val = document.createElement('p')
+    val.innerHTML = check.value + 'cal / 100g';
+    check.oninput = function () {
+      val.innerHTML = this.value + 'cal / 100g';
+    }
+    val.id = 'lastvalues'
+
+
+    document.getElementById('mydiv3').appendChild(check);
+    document.getElementById('mydiv3').appendChild(val);
+    ischeck2 = true;
+      }
+
+
+    function closeslider3() {
+      //alert("close")
+      var x = document.getElementById("lastrange")
+      x.remove();
+      document.getElementById("lastvalues").remove();
+      ischeck2 = false;
+    }
+
+    function toggleslider3() {
+
+
+      if (ischeck2) {
+        //alert('close')
+        closeslider3();
+      } else {
+        // alert("open")
+        addslider3();
+      }
+
+
+
+    }
+
+  </script>
+</head>
+
+<body>
+  <form action="/search/" method="POST">
+    {% csrf_token %}
+    <div id="container" style="background-color:whitesmoke;">
+      <div class="row" style="background-color:white">
+        <div class="input-group">
+          <div class="form-outline" style="width:220px;width:350px;margin-left: 510px;">
+            <input type="search" id="form1" name="search" placeholder="Search..." class="form-control" value={{search}}>
+
+          </div>
+          <button type="submit" style="position: absolute;left: 860px;" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+
+          </button>
+          <button type="button" style="position: absolute;left: 1260px;" class="btn btn-primary">
+            <i class="fas fa-shopping-cart"></i> Cart
+
+          </button>
+        </div>
+
+
+
+
+
+
+
+      </div>
+      <div class=row style="background-color:whitesmoke">
+        <div class="col1" style="background-color:white;">
+          <div class="filter">Filter</div>
+          <div class="filter">
+            <h5>CATEGORIES</h5>
+          </div>
+          <div class="nutrients">Nutrients<br><br>
+            <input type="checkbox" id="nutri1" name="Fprotien" onclick="toggleslider()" {% if protien != 0 %} checked {% endif %}> Protiens<br><br>
+            <div id="mydiv"></div>
+            <input type="checkbox" id="nutri2" name="Fcarb" onclick="toggleslider1()" {% if carb != 0 %} checked{% endif %}> Carbohydrates<br><br>
+            <div id="mydiv1"></div>
+            <input type="checkbox" id="nutri3" name="Ffat"  onclick="toggleslider2()" {% if fat != 0 %} checked {% endif %}> Fat<br><br>
+            <div id="mydiv2"></div>
+            <input type="checkbox" id="nutri4" name="Fcal"  onclick="toggleslider3()" {% if cal != 0 %} checked {% endif %}> Calories<br><br>
+            <div id="mydiv3"></div>
+
+
+
+
+
+
+
+
+
+
+          </div>
+
+        </div>
+        {% if not data%}
+        <div class="filter">
+          <h4>Sorry! No food found matching your keyword or filter. </h4>
+        </div>
+        {%endif%}
+        <div class="col" style="background-color:white ">
+          {% for food in data %}
+          <div class="row">
+            <img class="photos" src="{% url 'fooddelivery:image' food.photo %}"></img><br><br>
+            <div class="col" style="width:100%;">
+              <p style="margin-top:20px">{{food.name}} by chef {{food.chef.name}}</p>
+              <p style="margin-top:20px">Rs. {{food.prise}}</p>
+
+
+            </div>
+            <div class="btnclass" style="width:100%;">
+              <button type="button" style="height:50px;margin-left: 260px;" class=" btn btn-primary">OrderNow</button>
+
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+          {% endfor %}
+
+
+
+        </div>
+        
+
+      </div>
+    </div>
+
+
+
+
+
+    <script>
+      var slider = document.getElementById("myRange");
+      var output = document.getElementById("demo");
+
+      output.innerHTML = slider.value;
+
+      slider.oninput = function () {
+        output.innerHTML = this.value;
+
+      }
+    </script>
+  </form>
+</body>
+
+</html>
