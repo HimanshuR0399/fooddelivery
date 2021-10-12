@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -335,7 +336,7 @@
         <div class="col" style="background-color:white ">
           {% for food in data %}
           <div class="row">
-            <img class="photos" src="{% url 'fooddelivery:image' food.photo %}"></img><br><br>
+            <img class="photos" src="{% url 'fooddelivery:image' food.photo %}" onerror = "this.src = '{% static "default_food.png" %}'"></img><br><br>
             <div class="col" style="width:100%;">
               <p style="margin-top:20px">{{food.name}} by chef {{food.chef.name}}</p>
               <p style="margin-top:20px">Rs. {{food.prise}}</p>
