@@ -74,13 +74,33 @@
     .photos {
       width: 200px;
       height: 200px;
-
-
-
-
-
-
-    }
+  }
+  .food{
+    position:absolute;
+	top:20px;
+	left:35px;
+  
+	height:40px;
+	width:40px;
+	text-align:center;
+	background:green;
+	border-radius:10px;
+	cursor:pointer;
+	color:white;
+	padding-top:8px;
+	font-size:20px;
+	line-height : 30px
+  }
+  .logo{
+	position:absolute;
+	
+	font-size:35px;
+	line-height:80px;
+	left:80px;
+	font-family:'Nunito', sans-serif;
+	text-shadow: 2px 3px 6px #005cb8;
+	font-weight:bold;
+}
   </style>
   <script>
     var ischecked = false;
@@ -269,7 +289,37 @@
 
 
     }
+//------------click more event------------//
+var n=0; 
+var count=0;
+//------------update this function ---------------///
+  function more(){
+       // ------------link to databse --------// 
+        var list=[10,20,30,40,50,60,70,44,556,798,5674,56742];
+       
+          var temp=0;
+          //alert(n);
+          for(let i=n;i<list.length;i++){
+             if(temp!=3){ 
+              var ele=document.createElement('div');
+              ele.innerHTML='newdiv'+list[i];
+              document.getElementById('mydiv').appendChild(ele);
+              temp++;
+           }
+           
+          }
+        count++;
+          //document.getElementById("btn").remove();
+          if(3*count<=list.length){
+               n=3*count;
+          }
+          else{
+              alert("Thats all we have!!!!")
+              document.getElementById("btn").remove();
 
+          }
+        
+     }
   </script>
 </head>
 
@@ -278,6 +328,8 @@
     {% csrf_token %}
     <div id="container" style="background-color:whitesmoke;">
       <div class="row" style="background-color:white">
+      <div class="food"><i class="fas fa-utensils"></i></div>
+         <label class="logo"><h3 style="color:hsl(210, 100%, 4%)">FoodJunction</h3></label>
         <div class="input-group">
           <div class="form-outline" style="width:220px;width:350px;margin-left: 510px;">
             <input type="search" id="form1" name="search" placeholder="Search..." class="form-control" value={{search}}>
@@ -364,6 +416,9 @@
         
 
       </div>
+      <!-give  onclick function and update it by link it to database , function is on line 293 -?-->
+      <button id='btn' type="button"  style="margin-left:700px;margin-bottom: 10px;"class="btn btn-primary " onclick="#">
+        <i class="fas fa-chevron-circle-down"></i> More
     </div>
 
 
