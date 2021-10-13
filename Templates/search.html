@@ -102,7 +102,7 @@
 	font-weight:bold;
 }
   </style>
-  <script>
+  <script type="text/javascript">
     var ischecked = false;
     var ischeck = false;
     var ischeck1 = false;
@@ -293,33 +293,43 @@
 var n=0; 
 var count=0;
 //------------update this function ---------------///
-  function more(){
-       // ------------link to databse --------// 
-        var list=[10,20,30,40,50,60,70,44,556,798,5674,56742];
-       
-          var temp=0;
-          //alert(n);
-          for(let i=n;i<list.length;i++){
-             if(temp!=3){ 
-              var ele=document.createElement('div');
-              ele.innerHTML='newdiv'+list[i];
-              document.getElementById('mydiv').appendChild(ele);
-              temp++;
-           }
-           
-          }
-        count++;
-          //document.getElementById("btn").remove();
-          if(3*count<=list.length){
-               n=3*count;
-          }
-          else{
-              alert("Thats all we have!!!!")
-              document.getElementById("btn").remove();
 
-          }
-        
-     }
+var visible = 0
+function add_more(){
+  visible += 4;
+  const add_here = document.getElementById('add_here');
+  const add_btn = document.getElementById('addbtn');
+  const data = JSON.parse(JSON.stringify({{data|safe}}));
+  console.log(data);
+  if(data[0]['length'] == 0){
+    add_here.innerHTML = "<div class='filter row'><h4>Sorry! No food found matching your keyword or filter. </h4></div>";
+    add_btn.remove();
+
+  }
+  else{
+    for(var i = visible -4; i < visible && i < data[0]['length'];i++){
+      add_here.innerHTML += `<div class="row">
+      <img class="photos" src="{% url 'fooddelivery:homepage'%}image/`+data[0]['photo'][i]+`" onerror = "this.src = '{% static "default_food.png" %}'"></img><br><br>
+      <div class="col" style="width:100%;">
+        <p style="margin-top:20px">`+data[0]['name'][i]+` by chef `+data[0]['chef_name'][i]+`</p>
+        <p style="margin-top:20px">Rs. `+data[0]['prise'][i]+`</p>
+
+
+      </div>
+      <div class="btnclass" style="width:100%;">
+        <button type="button"onclick= "location.href='{% url "fooddelivery:homepage"%}food/`+data[0]['id'][i]+`';" style="height:50px;margin-left: 260px;" class=" btn btn-primary">OrderNow</button>
+
+      </div>
+
+
+    </div>`
+    }
+    if( visible >= data[0]['length']){
+      add_btn.remove()
+    }
+  }
+
+}
   </script>
 </head>
 
@@ -353,7 +363,7 @@ var count=0;
 
       </div>
       <div class=row style="background-color:whitesmoke">
-        <div class="col1" style="background-color:white;">
+        <div class="col1" style="background-color:white;" >
           <div class="filter">Filter</div>
           <div class="filter">
             <h5>CATEGORIES</h5>
@@ -378,58 +388,35 @@ var count=0;
 
 
           </div>
-
-        </div>
-        {% if not data%}
-        <div class="filter">
-          <h4>Sorry! No food found matching your keyword or filter. </h4>
-        </div>
-        {%endif%}
-        <div class="col" style="background-color:white ">
-          {% for food in data %}
-          <div class="row">
-            <img class="photos" src="{% url 'fooddelivery:image' food.photo %}" onerror = "this.src = '{% static "default_food.png" %}'"></img><br><br>
-            <div class="col" style="width:100%;">
-              <p style="margin-top:20px">{{food.name}} by chef {{food.chef.name}}</p>
-              <p style="margin-top:20px">Rs. {{food.prise}}</p>
-
-
-            </div>
-            <div class="btnclass" style="width:100%;">
-              <button type="button"onclick= "location.href='{% url "fooddelivery:food" food.id %}';" style="height:50px;margin-left: 260px;" class=" btn btn-primary">OrderNow</button>
-
-            </div>
-
-
-
-
-
-
-
+          </div>
+          
+          <!-- herere -->
+          <div id = 'add_here' class="col" style="background-color:white ">
 
           </div>
-          {% endfor %}
-
-
+        </div>
+        <!-- <!-give  onclick function and update it by link it to database , function is on line 293 -?--> -->
+        <button id='addbtn' type="button"  style="margin-left:700px;margin-bottom: 10px;"class="btn btn-primary " onclick="add_more()">
+          <i class="fas fa-chevron-circle-down"></i> More
+      </div>
+       
+<!-- herere -->
 
         </div>
         
 
-      </div>
-      <!-give  onclick function and update it by link it to database , function is on line 293 -?-->
-      <button id='btn' type="button"  style="margin-left:700px;margin-bottom: 10px;"class="btn btn-primary " onclick="#">
-        <i class="fas fa-chevron-circle-down"></i> More
-    </div>
+      
 
 
 
 
 
-    <script>
+    <script type="text/javascript">
       var slider = document.getElementById("myRange");
       var output = document.getElementById("demo");
+      add_more();
 
-      output.innerHTML = slider.value;
+      // output.innerHTML = slider.value;
 
       slider.oninput = function () {
         output.innerHTML = this.value;

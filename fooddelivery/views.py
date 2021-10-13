@@ -1,5 +1,6 @@
 from typing import Dict
 from django import http
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse,FileResponse
 from fooddelivery import models
@@ -59,6 +60,14 @@ def search(request):
             context['cal'] = request.POST.get('cal')
     except:
         pass
-    context['data'] = query_set
+    context['data'] = str([{
+        'length' : query_set.count(),
+        'name' : [i.name for i in query_set],
+        'chef_name' : [i.chef.name for i in query_set],
+        'id' : [i.id for i in query_set],
+        'photo' : [i.photo for i in query_set],
+        'prise' : [i.prise for i in query_set]
+
+    }])
     
     return render(request,'search.html',context)
