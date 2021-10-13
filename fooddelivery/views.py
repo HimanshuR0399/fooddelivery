@@ -22,10 +22,7 @@ def image(request,img):
 
 def food(request,id):
     food = models.Foods.objects.get(id = id)
-    context = {
-        'name' : food.name
-        
-    }
+    return HttpResponse(str(food))
 
 def search(request):
     context = dict()
