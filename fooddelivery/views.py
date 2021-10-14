@@ -22,8 +22,9 @@ def image(request,img):
     return FileResponse(img)
 
 def food(request,id):
-    food = models.Foods.objects.get(id = id)
-    return HttpResponse(str(food))
+    context = dict()
+    context['food'] = models.Foods.objects.get(id = id)
+    return render(request,"product.html",context)
 
 def search(request):
     context = dict()
