@@ -76,11 +76,7 @@
       height: 200px;
   }
   .food{
-    position:absolute;
-	top:20px;
-	left:35px;
-  
-	height:40px;
+    height:40px;
 	width:40px;
 	text-align:center;
 	background:green;
@@ -89,7 +85,6 @@
 	color:white;
 	padding-top:8px;
 	font-size:20px;
-	line-height : 30px
   }
   .logo{
 	position:absolute;
@@ -330,6 +325,12 @@ function add_more(){
   }
 
 }
+function prev(){
+       //alert("hello")
+       event.preventDefault();
+      window.history.back();
+      // window.location.href = document.referrer;
+     }
   </script>
 </head>
 
@@ -338,9 +339,12 @@ function add_more(){
     {% csrf_token %}
     <div id="container" style="background-color:whitesmoke;">
       <div class="row" style="background-color:white">
-      <div class="food"><i class="fas fa-utensils"></i></div>
-         <label class="logo"><h3 style="color:hsl(210, 100%, 4%)">FoodJunction</h3></label>
+      
+         
         <div class="input-group">
+           <div class="food" onclick="prev()"><i class="fas fa-utensils"></i></div>
+              <div><input style="cursor:pointer;margin-bottom:2px;font-size:25px;background:transparent;position:absolute;left:50px;font-family:'Nunito', sans-serif;text-shadow: 2px 3px 6px #005cb8;font-weight:bold;border:none"type="button"id="back" value="FoodJunction"onClick="prev()"/>
+               </div>
           <div class="form-outline" style="width:220px;width:350px;margin-left: 510px;">
             <input type="search" id="form1" name="search" placeholder="Search..." class="form-control" value={{search}}>
 
