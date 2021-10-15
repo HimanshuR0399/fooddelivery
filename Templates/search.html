@@ -330,6 +330,12 @@ function add_more(){
   }
 
 }
+function prev(){
+       //alert("hello")
+       event.preventDefault();
+        location.href = "{% url 'fooddelivery:homepage' %}";
+      // window.location.href = document.referrer;
+     }
   </script>
 </head>
 
@@ -339,7 +345,8 @@ function add_more(){
     <div id="container" style="background-color:whitesmoke;">
       <div class="row" style="background-color:white">
       <div class="food"><i class="fas fa-utensils"></i></div>
-         <label class="logo"><h3 style="color:hsl(210, 100%, 4%)">FoodJunction</h3></label>
+         <div><input style="cursor:pointer;margin-bottom:2px;font-size:25px;background:transparent;position:absolute;left:50px;font-family:'Nunito', sans-serif;text-shadow: 2px 3px 6px #005cb8;font-weight:bold;border:none"type="button"id="back" value="FoodJunction"onClick="prev()"/>
+            </div>
         <div class="input-group">
           <div class="form-outline" style="width:220px;width:350px;margin-left: 510px;">
             <input type="search" id="form1" name="search" placeholder="Search..." class="form-control" value={{search}}>
