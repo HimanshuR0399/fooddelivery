@@ -72,3 +72,6 @@ def search(request):
     }])
     
     return render(request,'search.html',context)
+
+def add_to_cart(request):
+    

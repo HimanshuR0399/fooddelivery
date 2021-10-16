@@ -32,7 +32,7 @@
 }
 
 .heart i:hover {
-    color: red
+    color: rgb(56, 207, 51)
 }
 
 .p-image img {
@@ -150,6 +150,6 @@
 }
 .chef {
   position:absolute;
-  top: 280px;
-  left:300px;
+  top: 140px;
+  left:550px;
 }
