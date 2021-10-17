@@ -1,0 +1,175 @@
+h1{
+    font-family: cursive;
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    
+}
+
+button{
+        margin-top: 90px;
+        margin-left: 60px;
+        margin-right: 60px;
+        background-color:darkblue;
+        color: rgb(250, 205, 6);
+        font-family: cursive;
+        font-size: 30px;
+        align-self:center;
+}
+input{
+        margin: 20px;
+        font-family: cursive;
+        font-size: 23px;
+    }
+label{
+    
+        margin: 20px;
+        font-family: cursive;
+        font-size: 23px;
+    
+}
+.come{
+    /* background-color:blue; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    /* height: 20px; */
+    /* width: 50px; */
+    animation-name: comein;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    /* animation-fill-mode: backwards; */
+}
+.popup1{
+    background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff02dd;
+    padding: 10px;
+    height: 400px;
+    width: 500px;
+    /* height: 20px; */
+    /* width: 50px; */
+    animation-name: riseup1;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    /* animation-fill-mode: backwards; */
+}
+.popup2{
+    background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff02dd;
+    padding: 10px;
+    height: 600px;
+    width: 600px;
+    /* height: 20px; */
+    /* width: 50px; */
+    animation-name: riseup2;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    /* animation-fill-mode: backwards; */
+}
+.popdown{
+    animation-name: godown;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in;
+}
+@keyframes riseup1 {
+    0%{background-color: #ff07de00;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 5px solid #FFFF00; */
+    padding: 10px;
+    padding: 10px;
+    height: 200px;
+    width: 200px;}
+    
+    100%{background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff02dd;
+    padding: 10px;
+    height: 400px;
+    width: 500px;}
+}
+@keyframes riseup2 {
+    0%{background-color: #ff07de00;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 5px solid #FFFF00; */
+    padding: 10px;
+    padding: 10px;
+    height: 200px;
+    width: 200px;}
+    
+    100%{background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff02dd;
+    padding: 10px;
+    height: 600px;
+    width: 550px;}
+}
+@keyframes godown {
+    0%{background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff07de8a;
+    padding: 10px;
+    height: 400px;
+    width: 500px;}
+    
+    100%{background-color: #ff07de00;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 5px solid #FFFF00; */
+    padding: 10px;
+    padding: 10px;
+    height: 200px;
+    width: 200px;}
+    
+}
+@keyframes comein{
+    0%{position: fixed;top: 50%;left: 0%;}
+    100%{position: fixed;top: 50%;left: 50%;}
+    
+}
+.go{
+    /* background-color:blue; */
+    position: fixed;
+    top: 50%;
+    left: 100%;
+    margin-top: -50px;
+    margin-left: -50px;
+    /* height: 20px; */
+    /* width: 50px; */
+    animation-name: go_out;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in;
+    /* animation-fill-mode: backwards; */
+}
+@keyframes go_out{
+    0%{position: fixed;top: 50%;left: 50%;}
+    100%{position: fixed;top: 50%;left: 100%;}
+    
+}
+

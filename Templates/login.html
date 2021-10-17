@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login_page</title>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    
+</head>
+<style>
+    body{
+        background-image: url("{% static "background.jpg "%}");
+    }
+    h1{
+    font-family: cursive;
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    
+}
+
+button{
+        margin-top: 90px;
+        margin-left: 60px;
+        margin-right: 60px;
+        background-color:darkblue;
+        color: rgb(250, 205, 6);
+        font-family: cursive;
+        font-size: 30px;
+        align-self:center;
+}
+input{
+        margin: 20px;
+        font-family: cursive;
+        font-size: 23px;
+    }
+label{
+    
+        margin: 20px;
+        font-family: cursive;
+        font-size: 23px;
+    
+}
+.come{
+    /* background-color:blue; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    /* height: 20px; */
+    /* width: 50px; */
+    animation-name: comein;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    /* animation-fill-mode: backwards; */
+}
+.popup1{
+    background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff02dd;
+    padding: 10px;
+    height: 500px;
+    width: 500px;
+    /* height: 20px; */
+    /* width: 50px; */
+    animation-name: riseup1;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    /* animation-fill-mode: backwards; */
+}
+.popup2{
+    background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff02dd;
+    padding: 10px;
+    height: 700px;
+    width: 600px;
+    /* height: 20px; */
+    /* width: 50px; */
+    animation-name: riseup2;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    /* animation-fill-mode: backwards; */
+}
+.popdown{
+    animation-name: godown;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in;
+}
+@keyframes riseup1 {
+    0%{background-color: #ff07de00;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 5px solid #FFFF00; */
+    padding: 10px;
+    padding: 10px;
+    height: 200px;
+    width: 200px;}
+    
+    100%{background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff02dd;
+    padding: 10px;
+    height: 500px;
+    width: 500px;}
+}
+@keyframes riseup2 {
+    0%{background-color: #ff07de00;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 5px solid #FFFF00; */
+    padding: 10px;
+    padding: 10px;
+    height: 200px;
+    width: 200px;}
+    
+    100%{background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff02dd;
+    padding: 10px;
+    height: 700px;
+    width: 550px;}
+}
+@keyframes godown {
+    0%{background-color:#ff07de8a;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #ff07de8a;
+    padding: 10px;
+    height: 400px;
+    width: 500px;}
+    
+    100%{background-color: #ff07de00;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 5px solid #FFFF00; */
+    padding: 10px;
+    padding: 10px;
+    height: 200px;
+    width: 200px;}
+    
+}
+@keyframes comein{
+    0%{position: fixed;top: 50%;left: 0%;}
+    100%{position: fixed;top: 50%;left: 50%;}
+    
+}
+.go{
+    /* background-color:blue; */
+    position: fixed;
+    top: 50%;
+    left: 100%;
+    margin-top: -50px;
+    margin-left: -50px;
+    /* height: 20px; */
+    /* width: 50px; */
+    animation-name: go_out;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in;
+    /* animation-fill-mode: backwards; */
+}
+@keyframes go_out{
+    0%{position: fixed;top: 50%;left: 50%;}
+    100%{position: fixed;top: 50%;left: 100%;}
+    
+}
+
+
+</style>
+<body>
+    {% if message %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+      </div>
+    {% endif %}
+    <div id="target">
+        
+    </div>
+    <script type = "text/javascript" >
+    function come_in() {
+    var div1 = document.getElementById('target');
+    div1.innerHTML = "<img src='static/donut1.gif' alt='scooter.png' height='200px'>"
+    div1.classList = 'come'
+    // document.body.appendChild(div1);
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+} async function login() {
+    var div1 = document.getElementById('target');
+    div1.className = "popup1"
+    await sleep(550)
+    div1.innerHTML = `<h1>Log In</h1><form method = "POST" id = "signup" action = "{% url "fooddelivery:login"%}">{% csrf_token %}
+    <input type='hidden' name = "type" value = "login"><label>Username</label><input type='text' name = "username" size='17'><br><label>Password</label><input type='password' name = "password" size='17'> <br><br><button onclick = 'click_signup()'>Sign Up</button><button type = "submit">Log in</button></form>`
+}
+async function signup() {
+    var div1 = document.getElementById('target');
+    div1.className = "popup2"
+    await sleep(550)
+    div1.innerHTML = `<h1>Sign Up</h1>
+    <form method = "POST" id = "signup" action = "{% url "fooddelivery:login"%}">
+    <label style = 'margin-top = 1px;'>Full Name</label>
+    {% csrf_token %}
+    <input type='hidden' name = "type" value = "signup">
+    <input type='text' name = "name" size='17' style = 'margin-top = 1px;'>
+    <br>
+    <label style = 'margin-top = 1px;'>Gender</label>
+    <br><input type='radio' name='gender' style = 'margin-top = 1px;'><label style = 'margin-top = 1px;' value "M">Male</label>
+    <input type='radio' name='gender' style = 'margin-top = 1px;'><label style = 'margin-top = 1px;' value = "F">Female</label>
+    <input type='radio' name='gender' style = 'margin-top = 1px;'><label style = 'margin-top = 1px;' value = "O">Other</label>
+    <br><label style = 'margin-top = 1px;'>Contact number</label><input type='text' size='10' style = 'margin-top = 1px;' name = "contact">
+    <br><label style = 'margin-top = 1px;'>Username</label><input type='text' size='17' name = "username" style = 'margin-top = 1px;'>
+    <label style = 'margin-top = 1px;' >Password</label><input type='password' size='17' style = 'margin-top = 1px;' name = "password">
+    <br><label style = 'margin-top = 1px;' >Confirm Password</label><input type='password' name = "cpassword" size='17' style = 'margin-left: 10px'> 
+    <br><br><button onclick = 'click_login()' style = 'margin-top:10px;'>Log in</button>
+    <button style = 'margin-top:10px;' type = "submit">Sign up</button>`
+}
+async function popup(action) {
+    var div1 = document.getElementById('target');
+    await sleep(550);
+    while (div1.firstChild) {
+        div1.removeChild(div1.lastChild);
+    }
+
+    action()
+}
+async function godown() {
+    var div1 = document.getElementById('target');
+    while (div1.firstChild) {
+        div1.removeChild(div1.lastChild);
+
+    }
+    div1.className = "popdown"
+    await sleep(550)
+    div1.innerHTML = "<img src='static/donut1.gif' alt='scooter.png' height='200px'>"
+    div1.className = "go"
+    await sleep(550)
+    while (div1.firstChild) {
+        div1.removeChild(div1.lastChild);
+
+    }
+
+}
+async function click_login() {
+    godown()
+    await sleep(1200)
+    come_in()
+    popup(login)
+}
+async function click_signup() {
+    godown()
+    await sleep(1200)
+    come_in()
+    popup(signup)
+}
+come_in();
+popup(login)
+
+    </script>
+    
+</body>
+</html>
