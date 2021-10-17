@@ -5,9 +5,9 @@
 }
 
 .card {
-    width: 650px;
+    width: 550px;
     border: none;
-    height: 450px;
+    height: 650px;
     border-radius: 3px;
     cursor: pointer;
     position: relative;
@@ -35,6 +35,7 @@
     color: rgb(56, 207, 51)
 }
 
+}
 .p-image img {
     width: 270px;
     transform: rotate(15deg);
@@ -48,7 +49,7 @@
 
 .p-about {
     position: absolute;
-    width: 250px;
+    width: 390px;
     font-size: 15px;
     top: 70px;
     left: -50px;
@@ -150,6 +151,7 @@
 }
 .chef {
   position:absolute;
-  top: 140px;
-  left:550px;
+  top: 340px;
+  left:450px;
 }
+#more {display: none;}
