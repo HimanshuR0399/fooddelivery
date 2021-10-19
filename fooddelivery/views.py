@@ -94,12 +94,6 @@ def add_to_cart(request):
 
 def login_signup(request):
     context = dict()
-    global next
-    try:
-        if request.session['next'] == None:
-            request.session['next'] = '/'
-    except:
-        request.session['next'] = '/'
     if request.method == 'POST':
         if request.POST.get('type') == 'signup':
             name = request.POST.get('name')
@@ -135,7 +129,10 @@ def login_signup(request):
             print(user)
             if user is not None:
                 login(request,user)
-                return redirect(request.session['next'])
+                try: 
+                    return redirect(request.session['next'])
+                except:
+                    return redirect('/')
             return render(request,'login.html',{'message':"Incorrect username or password"})
     
 
@@ -144,3 +141,5 @@ def login_signup(request):
     return render(request,'login.html',context)
 
 
+def cart(request):
+    return render(request,'cart.html')
