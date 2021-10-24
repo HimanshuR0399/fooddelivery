@@ -142,4 +142,4 @@ def login_signup(request):
 
 
 def cart(request):
-    return render(request,'cart.html')
+    return render(request,'cart3.html')
