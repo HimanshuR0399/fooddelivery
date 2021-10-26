@@ -1,5 +1,5 @@
 from typing import Dict
-from django import http
+from django import db, http
 from django.contrib import auth
 from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
@@ -25,9 +25,10 @@ def image(request,img):
     img = open("fooddelivery/images/"+img,'rb')
     return FileResponse(img)
 
-def food(request,id):
+def food(request,id,messsage = None):
     context = dict()
     context['food'] = models.Foods.objects.get(id = id)
+    context['message'] = messsage
     return render(request,"product.html",context)
 
 def search(request):
@@ -77,19 +78,20 @@ def search(request):
     
     return render(request,'search.html',context)
 
-def add_to_cart(request):
+def add_to_cart(request,id):
     if request.user.is_anonymous:
         request.session['next'] = request.META.get('HTTP_REFERER')
-        redirect('login')
+        return redirect('fooddelivery:login')
     else:
-        cart  = models.Cart.objects.get(user = models.Users.objects.get(username = request.user.username),food = models.Foods.objects.get(id = request.POST.get('id')))
-        if cart.count() == 0:
+        cart  = models.Cart.objects.filter(users = models.Users.objects.get(username = request.user.username),food = models.Foods.objects.get(id = id)).first()
+        print(cart)
+        if cart == None:
             new_item = models.Cart()
-            new_item.user = models.Users.objects.get(username = request.user.username)
-            new_item.food = models.Foods.objects.get(id = request.POST.get('id'))
+            new_item.users = models.Users.objects.get(username = request.user.username)
+            new_item.food = models.Foods.objects.get(id = id)
             new_item.save()
-            return HttpResponse('Item has been added to the cart')
-        return HttpResponse('This item is already present in the cart')
+            return food(request,id,"Your item is added to the cart")
+        return food(request,id,'This item is already present in the cart')
 
 
 def login_signup(request):
@@ -132,7 +134,7 @@ def login_signup(request):
                 try: 
                     return redirect(request.session['next'])
                 except:
-                    return redirect('/')
+                    return redirect('fooddelivery:homepage')
             return render(request,'login.html',{'message':"Incorrect username or password"})
     
 
@@ -142,4 +144,83 @@ def login_signup(request):
 
 
 def cart(request):
-    return render(request,'cart3.html')
+    if request.user.is_anonymous:
+        request.session['next'] = request.META.get('HTTP_REFERER')
+        print(request.session['next'])
+        return redirect('fooddelivery:login')
+    context = dict()
+    context['items'] = models.Cart.objects.filter(users = models.Users.objects.get(username = request.user.username))
+    context['total'] = sum([i.food.prise * i.quantity for i in context['items']])
+    context['address'] = models.Addresses.objects.filter(username = models.Users.objects.get(username = request.user.username))
+    if context['address'].count() != 0:
+        context['address'] = context['address'][0].address.replace("\n",'<br>')
+    context['vat'] = 50
+    if context['total'] == 0:
+        context['vat'] = 0
+    return render(request,'cart3.html',context)
+
+def update_cart(request,id,value):
+    change = models.Cart.objects.get(id = id)
+    change.quantity = value
+    change.save()
+    return redirect("fooddelivery:cart")
+
+def del_cart(request,id):
+    delete = models.Cart.objects.get(id = id)
+    delete.delete()
+    return redirect("fooddelivery:cart")
+
+def place_order(request):
+    payment = request.POST.get('payment')
+    address = request.POST.get('address')
+    print(address,payment)
+    db_address = models.Addresses.objects.filter(username = models.Users.objects.get(username = request.user.username)).first()
+    if db_address == None:
+        new_address = models.Addresses()
+        new_address.username =  models.Users.objects.get(username = request.user.username)
+        new_address.address = address
+        new_address.save()
+        print(1)
+    elif db_address.address != address:
+        db_address.address = address
+        db_address.save()
+        print(2,db_address)
+    new_order = models.Orders()
+    food_items = models.Cart.objects.filter(users = models.Users.objects.get(username = request.user.username))
+    new_order.Amount = sum([i.food.prise * i.quantity for i in food_items]) + 50
+    new_order.payment_mode = payment
+    new_order.paid = False
+    new_order.delivery_address = address
+    new_order.contact_no = models.Users.objects.get(username = request.user.username).contact
+    new_order.transaction_no = ''
+    new_order.status = 0
+    new_order.user_profile = models.Users.objects.get(username = request.user.username)
+    new_order.save()
+    for i in food_items:
+        food = models.FoodOrdered()
+        food.order = new_order
+        food.food = i.food
+        food.quantity = i.quantity
+        food.save()
+        i.delete()
+    if payment == 'crd':
+        return redirect('fooddelivery:payment',order = new_order.id)
+    else:
+        return redirect('fooddelivery:homepage')
+
+def payment(request,order):
+    db_order = models.Orders.objects.get(id = order)
+    if request.method == "POST":
+        db_order.transaction_no = "XXXXXXXXXXXXXXXXX"
+        db_order.paid = True
+        db_order.save()
+        return redirect("fooddelivery:homepage")
+    food = models.FoodOrdered.objects.filter(order = db_order)
+    context = dict()
+    context['order'] = db_order
+    context['food'] = food 
+    return render(request,"checkout.html",context)
+
+def checkout(request):
+
+    return render(request,'checkout.html')

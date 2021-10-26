@@ -61,13 +61,13 @@ class Orders(models.Model):
 
 
 class Reviews(models.Model):
-    user = models.ForeignKey(Users, on_delete = models.CASCADE)
+    users = models.ForeignKey(Users, on_delete = models.CASCADE)
     food = models.ForeignKey(Foods, on_delete = models.CASCADE)
     stars = models.IntegerField()
     review = models.CharField(max_length= 200)
 
 class Cart(models.Model):
-    user = models.ForeignKey(Users,on_delete=models.CASCADE)
+    users = models.ForeignKey(Users,on_delete=models.CASCADE)
     food = models.ForeignKey(Foods, on_delete = models.CASCADE)
     quantity = models.IntegerField(default=1)
 

@@ -58,7 +58,7 @@
                     <button type="button" style="width:40px;border-radius:5px;border:transparent; background:blue"><i style="color:white"class="fas fa-search" onclick="alert('hello')"></i></button>
                   
             </form>
-            <button type="button" style="position: absolute;left: 1260px;height:40px" class="btn btn-primary">
+            <button type="button" style="position: absolute;left: 1260px;height:40px" class="btn btn-primary" onclick="location.href = '{% url "fooddelivery:cart" %}'">
                 <i class="fas fa-shopping-cart"></i> Cart
 
             </button>
@@ -98,8 +98,8 @@
                     <span id="dots">...</span><span id="more">{{food.description}}</span>
                     <button onclick="myFunction()" id="myBtn">Read more</button>
                 </div>
-                <div class="buttons d-flex flex-row gap-3 px-3"> <button class="btn btn-danger w-100">ADD TO
-                        CART</button> <button class="btn btn-outline-danger w-100">BUY NOW</button> </div>
+                <div class="buttons d-flex flex-row gap-3 px-3"> <button class="btn btn-danger w-100"  onclick="location.href = '{% url "fooddelivery:add_to_cart" food.id%}'">ADD TO
+                        CART</button> <button class="btn btn-outline-danger w-100" onclick="location.href = '{% url "fooddelivery:add_to_cart" food.id%}'">BUY NOW</button> </div>
             </div>
 
         </div>
@@ -591,6 +591,9 @@ padding:5px;
          moreText.style.display = "inline";
        }
      }
+     {% if message %}
+     alert("{{message}}");
+     {% endif %}
        </script>
 </body>
 

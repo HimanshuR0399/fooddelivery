@@ -16,74 +16,40 @@
           <div class='order-info'>
             <div class='order-info-content'>
               <h2>Order Summary</h2>
-                      <div class='line'></div>
-              <table class='order-table'>
-                <tbody>
-                  <tr>
-                    <td><img src='idli-sambar.jpg' class='full-width'></img>
-                    </td>
-                    <td>
-                      <br> <span class='thin'></span>
-                      <br> IDLI SAMBAR<br> <span class='thin small'><br><br></span>
-                    </td>
-      
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class='price'>₹99.95</div>
-                    </td>
-                  </tr>
-                </tbody>
-      
-              </table>
+              {% for i in food %}
               <div class='line'></div>
               <table class='order-table'>
                 <tbody>
                   <tr>
-                    <td><img src='Masala-Dosa-500x375.jpg' class='full-width'></img>
+                    <td><img src='{% url "fooddelivery:image" i.food.photo %}' onerror = "this.src = '{% static "default_food.png" %}'" class='full-width'></img>
                     </td>
                     <td>
                       <br> <span class='thin'></span>
-                      <br>MASALA DOSA<br> <span class='thin small'><br><br></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class='price'>₹235.95</div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class='line'></div>
-              <table class='order-table'>
-                <tbody>
-                  <tr>
-                    <td><img src='Paneer-Masala-1-3.jpg' class='full-width'></img>
-                    </td>
-                    <td>
-                      <br> <span class='thin'></span>
-                      <br>PANEER MASALA<br> <span class='thin small'><br><br></span>
+                      <br>{{ i.food.name }} x {{i.quantity}}<br> <span class='thin small'><br><br></span>
                     </td>
       
                   </tr>
                   <tr>
                     <td>
-                      <div class='price'>₹25.95</div>
+                      <div class='price'>{% widthratio i.quantity 1 i.food.prise %}</div>
                     </td>
                   </tr>
                 </tbody>
+      
               </table>
+              {% endfor %}
+              
               <div class='line'></div>
               <div class='total'>
                 <span style='float:left;'>
-                  <div class='thin dense'>GST 5%</div>
+                  <div class='thin dense'>VAT</div>
                   <div class='thin dense'>Delivery</div>
                   TOTAL
                 </span>
                 <span style='float:right; text-align:right;'>
-                  <div class='thin dense'>₹68.75</div>
-                  <div class='thin dense'>₹4.95</div>
-                  ₹435.55
+                  <div class='thin dense'>₹{{ order.Amount|add:-50}}</div>
+                  <div class='thin dense'>₹0</div>
+                  ₹{{order.Amount}}
                 </span>
               </div>
       </div>
@@ -102,21 +68,23 @@
                   </table>
                   <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
                   Card Number
-                  <input class='input-field'></input>
+                  <form action="{% url "fooddelivery:payment" order.id %}" method="post">
+                    {% csrf_token %}
+                  <input class='input-field' name="number"></input>
                   Card Holder
-                  <input class='input-field'></input>
+                  <input class='input-field' name="name"></input>
                   <table class='half-input-table'>
                     <tr>
                       <td> Expires
-                        <input class='input-field'></input>
+                        <input class='input-field' name="expiry"></input>
                       </td>
                       <td>CVC
-                        <input class='input-field'></input>
+                        <input class='input-field' name='cvc'></input>
                       </td>
                     </tr>
                   </table>
-                  <button class='pay-btn'>Checkout</button>
-      
+                  <button  type = "submit" class='pay-btn'>Pay</button>
+                </form>
                 </div>
       
               </div>
