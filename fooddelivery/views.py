@@ -10,6 +10,7 @@ from django import forms
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 def homepage(request):
@@ -131,6 +132,8 @@ def login_signup(request):
             print(user)
             if user is not None:
                 login(request,user)
+                if models.Users.objects.get(username = request.user.username).is_chef:
+                    return redirect("fooddelivery:chef")
                 try: 
                     return redirect(request.session['next'])
                 except:
@@ -224,3 +227,27 @@ def payment(request,order):
 def checkout(request):
 
     return render(request,'checkout.html')
+
+def chef(request):
+    if request.user.is_anonymous:
+        request.session['next'] = request.META.get('HTTP_REFERER')
+        print(request.session['next'])
+        return redirect('fooddelivery:login')
+    elif not (models.Users.objects.get(username= request.user.username).is_chef):
+        raise PermissionDenied("Only chefs can access this page")
+    foods = models.Foods.objects.filter(chef = models.Users.objects.get(username = request.user.username))
+    orders = models.FoodOrdered.objects.filter(food__in = foods, order__in = models.Orders.objects.filter(status = 0))
+    context = dict()
+    context['user'] = models.Users.objects.get(username = request.user.username)
+    context['orders'] = orders
+    return render(request,'dash.html',context)
+
+def ready_to_pick(request,id):
+    a = models.Orders.objects.get(id= id)
+    a.status = 1
+    a.save()
+    return redirect("fooddelivery:chef")
+
+def logout_user(request):
+    logout(request)
+    return redirect("fooddelivery:homepage")

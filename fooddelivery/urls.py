@@ -14,5 +14,8 @@ urlpatterns = [
     path('del_cart/<int:id>',views.del_cart,name="del_cart"),
     path('confirm_order',views.place_order,name="confirm_order"),
     path('payment/<int:order>',views.payment,name="payment"),
+    path('chef_dashboard',views.chef,name = "chef"),
+    path('ready_to_pick/<int:id>',views.ready_to_pick,name = "ready"),
+    path('logout',views.logout_user,name = "logout"),
     # path("checkout",views.checkout,name = "checkout")
 ]
