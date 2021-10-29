@@ -7,8 +7,39 @@
 <head>
 <link rel="stylesheet" href="{% static "sude.css" %}">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<style>
+
+#user{
+	
+		position: absolute;
+	color:white;
+	border:1px solid rgb(137, 201, 198);
+	top:-20px;
+	left:1160px;
+	background-color: rgb(26, 31, 99);;
+	width:130px;
+  height:90px;
+	padding: 6px;
+	display:none;
+  transition:2s;
+	
+
+}
+
+</style>
+<script>
+function changeDef(x){
+ //alert("heloo");
+  var ele=document.getElementById('user').style.display="block";
+  //ele.classList.add("userpop");
+ //x.style.display="block";
+}
+function mouseout(){
+  var ele=document.getElementById('user').style.display="none";
+}
+</script>
 
 </head>
 <body bgcolor="#f4f0ec">
@@ -23,7 +54,8 @@
 <button type="submit"><div class="slogo"><i style="color:black"class="fas fa-search" ></i></div></button>
 </form>
 
-<a class=" login"href="#" style="position:absolute;left:1200px;top:22px;font-size:30px;"><i style="color:black"class="fas fa-user-circle" ></i></a>
+<a class=" login" style="position:absolute;left:1200px;top:22px;font-size:30px;"><i style="color:black"class="fas fa-user-circle" onmouseover="changeDef(this)" onmouseout='mouseout()'></i></a>
+
 <a class=" cart"href="{% url "fooddelivery:cart" %}" style="position:absolute;left:1280px;top:22px;font-size:30px"><i style="color:black"class="fas fa-shopping-cart"></i></a>
 <a class=" notification"href="#" style="position:absolute;left:1360px;top:22px;font-size:30px"><i style="color:black"class="fas fa-bell"></i></a>
 
@@ -38,6 +70,22 @@
 
 
 <div class="slideshow-container">
+<div id="user"onmouseover="changeDef(this)" onmouseout='mouseout()'>
+<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                    
+                    <li><a style="color:white"class="dropdown-item" href="#">Sign In</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a style="color:white" class="dropdown-item" href="#">Sign out</a></li>
+                  </ul>
+    </div>      
+         <!--        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                    
+                    <li><a style="color:white"class="dropdown-item" href="#">Sign In</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a style="color:white" class="dropdown-item" href="#">Sign out</a></li>
+                  </ul> -->
+
+         
 
 <div class="mySlides fade">
   <!-- <div class="numbertext">1 / 3</div> -->
