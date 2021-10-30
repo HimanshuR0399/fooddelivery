@@ -98,10 +98,7 @@
 }
   </style>
   <script type="text/javascript">
-    var ischecked = false;
-    var ischeck = false;
-    var ischeck1 = false;
-    var ischeck2 = false;
+  
 
     //---------------proteins slides ----------------------//  
     function addslider() {
@@ -123,20 +120,23 @@
 
     document.getElementById('mydiv').appendChild(check);
     document.getElementById('mydiv').appendChild(val);
-    ischecked = true;
       }
     function closeslider() {
       //alert("close")
+      try{
       var x = document.getElementById("proteinrange")
       x.remove();
       document.getElementById("proteinvalues").remove();
+      }
+      catch(error){
 
-      ischecked = false;
+      }
+
     }
     function toggleslider() {
 
 
-      if (ischecked) {
+      if (!document.getElementById('nutri1').checked) {
 
         closeslider();
       } else {
@@ -165,22 +165,25 @@
 
     document.getElementById('mydiv1').appendChild(check);
     document.getElementById('mydiv1').appendChild(val);
-    ischeck = true;
    }
 
 
     function closeslider1() {
       //alert("close")
+      try{
       var x = document.getElementById("carbrange")
       x.remove();
       document.getElementById("carbvalues").remove();
-      ischeck = false;
+      }
+      catch(error){
+
+      }
     }
 
     function toggleslider1() {
 
 
-      if (ischeck) {
+      if (!document.getElementById('nutri2').checked) {
         //alert('close')
         closeslider1();
       } else {
@@ -211,22 +214,25 @@
 
     document.getElementById('mydiv2').appendChild(check);
     document.getElementById('mydiv2').appendChild(val);
-    ischeck1 = true;
       }
 
 
     function closeslider2() {
       //alert("close")
+      try{
       var x = document.getElementById("fatrange")
       x.remove();
       document.getElementById("fatvalues").remove();
-      ischeck1 = false;
+      }
+      catch(error){
+
+      }
     }
 
     function toggleslider2() {
 
 
-      if (ischeck1) {
+      if (!document.getElementById('nutri3').checked) {
         //alert('close')
         closeslider2();
       } else {
@@ -258,22 +264,25 @@
 
     document.getElementById('mydiv3').appendChild(check);
     document.getElementById('mydiv3').appendChild(val);
-    ischeck2 = true;
       }
 
 
     function closeslider3() {
       //alert("close")
+      try{
       var x = document.getElementById("lastrange")
       x.remove();
       document.getElementById("lastvalues").remove();
-      ischeck2 = false;
+      }
+      catch(error){
+
+      }
     }
 
     function toggleslider3() {
 
 
-      if (ischeck2) {
+      if (!document.getElementById('nutri4').checked) {
         //alert('close')
         closeslider3();
       } else {
@@ -419,6 +428,10 @@ function prev(){
       var slider = document.getElementById("myRange");
       var output = document.getElementById("demo");
       add_more();
+      toggleslider();
+      toggleslider1();
+      toggleslider2();
+      toggleslider3();
 
       // output.innerHTML = slider.value;
 
