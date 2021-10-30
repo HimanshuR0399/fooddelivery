@@ -154,7 +154,7 @@
       check.name = "carb";
       check.value = {{ carb }};
     check.id = "carbrange";
-    check.max = '200'
+    check.max = '100'
     var val = document.createElement('p')
     val.innerHTML = check.value + 'g/100g';
     check.oninput = function () {
@@ -247,13 +247,14 @@
     function addslider3() {
 
 
-      var check = document.createElement("input");
+    var check = document.createElement("input");
 
-      check.type = 'range';
-      check.name = "cal";
-      check.value = {{ cal }};
+    check.type = 'range';
+    check.name = "cal";
+    check.max = '600';
+    check.value = {{ cal }};
     check.id = "lastrange";
-    check.max = '600'
+    
     var val = document.createElement('p')
     val.innerHTML = check.value + 'cal / 100g';
     check.oninput = function () {
@@ -321,7 +322,7 @@ function add_more(){
 
       </div>
       <div class="btnclass" style="width:100%;">
-        <button type="button"onclick= "location.href='{% url "fooddelivery:homepage"%}food/`+data[0]['id'][i]+`';" style="height:50px;margin-left: 260px;" class=" btn btn-primary">OrderNow</button>
+        <button type="button"onclick= "location.href='{% url "fooddelivery:homepage"%}food/`+data[0]['id'][i]+`';" style="height:50px;margin-left: 260px;" class=" btn btn-primary">click to view</button>
 
       </div>
 
@@ -425,8 +426,8 @@ function prev(){
 
 
     <script type="text/javascript">
-      var slider = document.getElementById("myRange");
-      var output = document.getElementById("demo");
+      // var slider = document.getElementById("myRange");
+      // var output = document.getElementById("demo");
       add_more();
       toggleslider();
       toggleslider1();
@@ -435,10 +436,10 @@ function prev(){
 
       // output.innerHTML = slider.value;
 
-      slider.oninput = function () {
-        output.innerHTML = this.value;
+      // slider.oninput = function () {
+      //   output.innerHTML = this.value;
 
-      }
+      // }
     </script>
   </form>
 </body>

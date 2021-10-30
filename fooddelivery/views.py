@@ -18,7 +18,8 @@ def homepage(request):
     # shuffle(query)
     print(query[0])
     context = {
-        'foods' : query
+        'foods' : query,
+        'anonymous' : request.user.is_anonymous
     }
     return render(request,'homepage.html',context)
 
@@ -49,8 +50,8 @@ def search(request):
     context['carb'] = 0
     try:
         if request.POST.get('Fcarb') == 'on':
-            query_set = query_set.filter(carbs__lte = request.POST.get('protien'))
-            context['carb'] = request.POST.get('protien')
+            query_set = query_set.filter(carbs__lte = request.POST.get('carb'))
+            context['carb'] = request.POST.get('carb')
     except:
         pass
     context['fat'] = 0
@@ -76,6 +77,7 @@ def search(request):
         'prise' : [i.prise for i in query_set]
 
     }])
+    print(context)
     
     return render(request,'search.html',context)
 
@@ -94,6 +96,19 @@ def add_to_cart(request,id):
             return food(request,id,"Your item is added to the cart")
         return food(request,id,'This item is already present in the cart')
 
+def add_to_cart_redirect(request,id):
+    if request.user.is_anonymous:
+        request.session['next'] = request.META.get('HTTP_REFERER')
+        return redirect('fooddelivery:login')
+    else:
+        cart  = models.Cart.objects.filter(users = models.Users.objects.get(username = request.user.username),food = models.Foods.objects.get(id = id)).first()
+        print(cart)
+        if cart == None:
+            new_item = models.Cart()
+            new_item.users = models.Users.objects.get(username = request.user.username)
+            new_item.food = models.Foods.objects.get(id = id)
+            new_item.save()
+        return redirect("fooddelivery:cart")
 
 def login_signup(request):
     context = dict()

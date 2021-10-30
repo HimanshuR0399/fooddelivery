@@ -20,7 +20,7 @@
 	left:1160px;
 	background-color: rgb(26, 31, 99);;
 	width:130px;
-  height:90px;
+  height:40px;
 	padding: 6px;
 	display:none;
   transition:2s;
@@ -72,10 +72,11 @@ function mouseout(){
 <div class="slideshow-container">
 <div id="user"onmouseover="changeDef(this)" onmouseout='mouseout()'>
 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    
-                    <li><a style="color:white"class="dropdown-item" href="#">Sign In</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a style="color:white" class="dropdown-item" href="#">Sign out</a></li>
+                    {% if anonymous %}
+                    <li><a style="color:white"class="dropdown-item" href="{% url "fooddelivery:login" %}">Sign In</a></li>
+                    {%else%}
+                    <li><a style="color:white" class="dropdown-item" href="{% url "fooddelivery:logout" %}">Sign out</a></li>
+                    {% endif %}
                   </ul>
     </div>      
          <!--        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">

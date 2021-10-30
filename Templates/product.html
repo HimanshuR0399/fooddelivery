@@ -99,7 +99,7 @@
                     <button onclick="myFunction()" id="myBtn">Read more</button>
                 </div>
                 <div class="buttons d-flex flex-row gap-3 px-3"> <button class="btn btn-danger w-100"  onclick="location.href = '{% url "fooddelivery:add_to_cart" food.id%}'">ADD TO
-                        CART</button> <button class="btn btn-outline-danger w-100" onclick="location.href = '{% url "fooddelivery:add_to_cart" food.id%}'">BUY NOW</button> </div>
+                        CART</button> <button class="btn btn-outline-danger w-100" onclick="location.href = '{% url "fooddelivery:ordernow" food.id%}'">BUY NOW</button> </div>
             </div>
 
         </div>
