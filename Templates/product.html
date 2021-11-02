@@ -25,7 +25,6 @@
 	color:white;
 	padding-top:8px;
 	font-size:20px;
-    
   }
   .logo{
 	position:absolute;
@@ -36,26 +35,18 @@
 	font-family:'Nunito', sans-serif;
 	text-shadow: 2px 3px 6px #005cb8;
 	font-weight:bold;
-    cursor:pointer;
 }
   </style>
-  <script>
-  function prev(){
-       //alert("hello")
-       event.preventDefault();
-        location.href = "{% url 'fooddelivery:homepage' %}";
-      // window.location.href = document.referrer;
-     }
-  </script>
+  
 </head>
 
 <body>
     
    
         <div class="row" style="background-color:white">
-            <div class="food "onClick="prev()"><i class="fas fa-utensils"></i></div>
-            <label class="logo" >
-                <h3 style="color:hsl(210, 100%, 4%)"onclick="prev()">FoodJunction</h3>
+            <div class="food" onclick="location.href = '{% url "fooddelivery:homepage" %}'"><i class="fas fa-utensils"></i></div>
+            <label class="logo" onclick="location.href = '{% url "fooddelivery:homepage" %}'">
+                <h3 style="color:hsl(210, 100%, 4%)" >FoodJunction</h3>
             </label>
             <form action="/search/" method="POST">
                 {% csrf_token %}

@@ -17,6 +17,7 @@ urlpatterns = [
     path('chef_dashboard',views.chef,name = "chef"),
     path('ready_to_pick/<int:id>',views.ready_to_pick,name = "ready"),
     path('logout',views.logout_user,name = "logout"),
-    path('add_to_cart_redirect/<int:id>',views.add_to_cart_redirect,name = "ordernow")
+    path('add_to_cart_redirect/<int:id>',views.add_to_cart_redirect,name = "ordernow"),
+    path('orders',views.orders,name= 'orders')
     # path("checkout",views.checkout,name = "checkout")
 ]

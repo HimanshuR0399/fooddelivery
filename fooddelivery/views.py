@@ -266,3 +266,21 @@ def ready_to_pick(request,id):
 def logout_user(request):
     logout(request)
     return redirect("fooddelivery:homepage")
+
+def orders(request):
+    if request.user.is_anonymous:
+        return redirect('fooddelivery:login')
+    user = models.Users.objects.get(username = request.user.username)
+    orders = models.Orders.objects.filter(user_profile = user)
+    food_ordered = models.FoodOrdered.objects.filter(order__in = orders)
+    order_list = list()
+    for i in orders:
+        a = dict()
+        a['id'] = i.id
+        a['total'] = i.Amount
+        a['payment'] = i.payment_mode
+        a['transaction'] = i.transaction_no
+        a['status'] = i.status
+        a['foods'] = [i.food.name + " x " + str(i.quantity) for i in food_ordered.filter(order = i)]
+        order_list.append(a)
+    return render(request,'od.html',{'orders' : order_list})
