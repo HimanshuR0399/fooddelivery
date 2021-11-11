@@ -61,7 +61,7 @@ function mouseout(){
 
 <button class="topbtn" style="position:absolute;top:22px;left:500px">Home</button>
 <button class="topbtn" style="position:absolute;top:22px;left:580px"id="dishbtn" >Dishes</button>
-<button class="topbtn"style="position:absolute;top:22px;left:660px">Menu</button>
+<button class="topbtn"style="position:absolute;top:22px;left:660px" onclick="location.href = '{% url 'fooddelivery:search' %}'">Menu</button>
 <button class="topbtn" style="position:absolute;top:22px;left:740px" onclick="location.href = '{% url "fooddelivery:orders" %}'">Order</button>
 
 

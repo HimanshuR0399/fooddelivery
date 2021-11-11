@@ -37,10 +37,15 @@ def search(request):
     context = dict()
     query_set = models.Foods.objects.all()
     context['search'] = str()
-    if request.POST.get('search') != '':
-        query_set = query_set.filter(name__contains = request.POST.get('search').title())
-        context['search'] = request.POST.get('search')
+    try:
+        if request.POST.get('search') != '':
+            query_set  = query_set.filter(name__contains = request.POST.get('search').title())
+            context['search'] = request.POST.get('search')
+    except:
+        pass
     context['protien'] = 0
+
+
     try:
         if request.POST.get('Fprotien') == 'on':
             query_set = query_set.filter(protien__lte = request.POST.get('protien'))
